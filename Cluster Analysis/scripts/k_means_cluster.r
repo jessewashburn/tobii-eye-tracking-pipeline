@@ -17,7 +17,7 @@ library(scales)
 # ---- User-configurable variables ----
 condition_num <- 1   # Set condition number here
 chart_num <- 1       # Set chart number here
-chart_name <- "BarChart"  # Set chart name here
+chart_name <- "Chart1"  # Set chart name here
 
 # ---- Load and prepare data ----
 input_file <- paste0("FS+Counts_participants_condition", condition_num, "_chart", chart_num, "_", chart_name, ".csv")
