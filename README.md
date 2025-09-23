@@ -4,31 +4,51 @@ This repository contains an end-to-end pipeline for analyzing Tobii eye-tracking
 
 ## Repository Structure
 
+
 ```
-tobii-eye-tracking-analysis/
-├── sequence-analysis/        # R scripts for sequence-based methods
-│   ├── scripts/              # Processing & analysis scripts
-│   ├── sample_data/          # Example input datasets
-│   └── results/              # Sample outputs
-├── cluster-analysis/         # R scripts for clustering gaze patterns
+tobii-eye-tracking-pipeline/
+├── sequence-analysis/           # Sequence-based analysis (R)
 │   ├── scripts/
-│   ├── sample_data/
+│   ├── sample-data/
 │   └── results/
-├── visualizations/           # R scripts for plotting and reporting
+├── cluster-analysis/            # Clustering gaze patterns (R)
 │   ├── scripts/
-│   ├── sample_data/
+│   ├── sample-data/
 │   └── results/
-├── machine-learning/         # Python models for predictive analysis
-│   ├── scripts/
-│   ├── sample_data/
-│   └── results/
+├── visualizations/              # All visualization types (R)
+│   ├── box-plots/
+│   │   ├── scripts/
+│   │   ├── sample-data/
+│   │   └── results/
+│   ├── heat-maps/
+│   │   ├── scripts/
+│   │   ├── sample-data/
+│   │   └── results/
+│   ├── coordinate-gaze-map/
+│   │   ├── scripts/
+│   │   ├── sample-data/
+│   │   └── results/
+│   ├── aoi-gaze-map/
+│   │   ├── scripts/
+│   │   ├── sample-data/
+│   │   └── results/
+├── machine-learning/            # Predictive modeling (Python)
+│   ├── regression/
+│   │   ├── scripts/
+│   │   ├── sample-data/
+│   │   └── results/
+│   ├── classification/
+│   │   ├── scripts/
+│   │   ├── sample-data/
+│   │   └── results/
 └── README.md
 ```
 
-Each pipeline folder includes:
+
+Each analysis or visualization folder includes:
 
 * **scripts/**: Core code for that stage of analysis
-* **sample\_data/**: Example inputs to demonstrate usage
+* **sample-data/**: Example inputs to demonstrate usage
 * **results/**: Representative outputs (plots, metrics, exports)
 
 ## Tech Stack
