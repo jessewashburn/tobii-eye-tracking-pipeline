@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<datasource inline="true" version="10.5">
+  <connection class="hyper" server="" dbname="cluster-analysis/results/Classified_Participants_with_Clusters_condition1_chart1.hyper" authentication="" />
+  <metadata>
+    <column name="participant_id" datatype="integer" role="dimension" />
+    <column name="cluster_id" datatype="integer" role="dimension" />
+    <column name="probability" datatype="real" role="measure" />
+    <column name="condition" datatype="string" role="dimension" />
+  </metadata>
+</datasource>

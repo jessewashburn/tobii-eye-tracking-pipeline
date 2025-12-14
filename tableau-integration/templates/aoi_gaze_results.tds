@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<datasource inline="true" version="10.5">
+  <connection class="hyper" server="" dbname="visualizations/aoi-gaze-map/results/sample_input_aoi_gaze_journey.hyper" authentication="" />
+  <metadata>
+    <column name="participant_id" datatype="integer" role="dimension" />
+    <column name="aoi_id" datatype="integer" role="dimension" />
+    <column name="x" datatype="real" role="measure" />
+    <column name="y" datatype="real" role="measure" />
+    <column name="timestamp" datatype="date-time" role="dimension" />
+    <column name="duration" datatype="real" role="measure" />
+  </metadata>
+</datasource>

@@ -2,6 +2,36 @@
 
 This repository contains an end-to-end pipeline for analyzing Tobii eye-tracking data. The project is structured into modular pipelines, each focused on a specific type of analysis. Together, these pipelines provide tools for data cleanup, sequence analysis, clustering, visualization, and machine learning.
 
+## Highlights
+
+- **Tableau-ready outputs:** Convert result CSVs into fast Tableau Extracts (`.hyper`) via a one-command builder. Includes `.tds` templates with pre-set field roles.
+- **Schema enforcement:** A machine-readable schema map and a validator script keep column names and data types consistent across outputs.
+- **CI guardrails:** GitHub Actions automatically validate CSV schemas on every push/PR for reliable, "just works" Tableau connections.
+- **Modular pipelines:** Separate folders for sequence analysis, clustering, ML, and visualizations, each with scripts, sample data, and example results.
+- **Cross-language tooling:** R for sequence/clustering/visualizations; Python for ML and data utilities.
+
+## Tableau Integration
+
+See [tableau-integration/README.md](tableau-integration/README.md) for generating Tableau Hyper extracts and using `.tds` templates to quickly connect datasets in Tableau Desktop.
+
+Quick start:
+
+```bash
+pip install tableauhyperapi
+python tableau-integration/scripts/build_hyper_extracts.py --root . --out tableau-integration/hyper-outputs
+python tableau-integration/scripts/validate_csv_schemas.py --root .
+```
+
+Templates:
+- [tableau-integration/templates/cluster_results.tds](tableau-integration/templates/cluster_results.tds)
+- [tableau-integration/templates/sequence_results.tds](tableau-integration/templates/sequence_results.tds)
+- [tableau-integration/templates/aoi_gaze_results.tds](tableau-integration/templates/aoi_gaze_results.tds)
+
+Schemas & CI:
+- Guide: [tableau-integration/schemas/SCHEMA_GUIDE.md](tableau-integration/schemas/SCHEMA_GUIDE.md)
+- Map: [tableau-integration/schemas/schema_config.json](tableau-integration/schemas/schema_config.json)
+- CI: [.github/workflows/csv-schema-check.yml](.github/workflows/csv-schema-check.yml)
+
 ## Repository Structure
 
 

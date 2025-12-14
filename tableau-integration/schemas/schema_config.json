@@ -1,0 +1,29 @@
+{
+  "cluster-analysis/results": {
+    "Classified_Participants_with_Clusters_condition1_chart1.csv": {
+      "participant_id": "int",
+      "cluster_id": "int",
+      "probability": "double",
+      "condition": "text"
+    }
+  },
+  "sequence-analysis/results": {
+    "*": {
+      "participant_id": "int",
+      "sequence": "text",
+      "start_time": "timestamp",
+      "end_time": "timestamp",
+      "duration": "double"
+    }
+  },
+  "visualizations/aoi-gaze-map/results": {
+    "*": {
+      "participant_id": "int",
+      "aoi_id": "int",
+      "x": "double",
+      "y": "double",
+      "timestamp": "timestamp",
+      "duration": "double"
+    }
+  }
+}

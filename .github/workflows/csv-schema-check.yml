@@ -1,0 +1,29 @@
+name: CSV Schema Validation
+
+on:
+  push:
+    paths:
+      - '**/*.csv'
+      - 'tableau-integration/schemas/schema_config.json'
+      - 'tableau-integration/scripts/validate_csv_schemas.py'
+  pull_request:
+    paths:
+      - '**/*.csv'
+      - 'tableau-integration/schemas/schema_config.json'
+      - 'tableau-integration/scripts/validate_csv_schemas.py'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run schema validator
+        run: |
+          python tableau-integration/scripts/validate_csv_schemas.py --root .
