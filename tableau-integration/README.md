@@ -26,6 +26,19 @@ Run locally:
 
 ```bash
 python scripts/validate_csv_schemas.py --root ..
+
+## Packaged Data Sources (.tdsx)
+
+Bundle a `.tds` and its `.hyper` into a single, shareable `.tdsx` for instant Tableau connections.
+
+```bash
+python scripts/package_tdsx.py \
+   --tds templates/cluster_results.tds \
+   --hyper hyper-outputs/cluster-analysis/results/Classified_Participants_with_Clusters_condition1_chart1.hyper \
+   --out packaged/cluster_results.tdsx
+```
+
+See [README_PACKAGING.md](README_PACKAGING.md) for details.
 ```
 ```
 

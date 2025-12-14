@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<workbook version="2022.3" xmlns:user="http://www.tableausoftware.com/xml/user">
+  <!-- Minimal starter workbook with placeholder data source name.
+       Collaborator should: Data -> New Data Source -> Tableau Extract -> select .tdsx,
+       then replace this placeholder connection with the packaged datasource. -->
+  <datasources>
+    <datasource caption="Cluster Results" inline="true" name="ds_cluster_placeholder">
+      <connection class="textscan" />
+      <metadata>
+        <column name="participant_id" datatype="integer" role="dimension" />
+        <column name="cluster_id" datatype="integer" role="dimension" />
+        <column name="probability" datatype="real" role="measure" />
+        <column name="condition" datatype="string" role="dimension" />
+      </metadata>
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name="Cluster Overview">
+      <table>
+        <columns>
+          <column ref="cluster_id" />
+          <column ref="probability" />
+          <column ref="condition" />
+        </columns>
+      </table>
+    </worksheet>
+  </worksheets>
+  <dashboards>
+    <dashboard name="Dashboard">
+      <zones>
+        <zone type="worksheet" name="Cluster Overview" />
+      </zones>
+    </dashboard>
+  </dashboards>
+</workbook>
