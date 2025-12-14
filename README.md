@@ -1,6 +1,9 @@
-# Tobii Eye Tracking Analysis
+# Tobii Eye Tracking Data Pipeline
 
-Analysis pipeline for Tobii eye-tracking data, including R scripts for sequence and cluster analysis, data cleanup, and visualizations, plus Python models for machine learning — with Tableau-ready extracts, templates, and CI schema validation.
+> **A Reusable Template for Eye-Tracking Research**  
+> This repository provides an end-to-end, modular pipeline for analyzing Tobii eye-tracking data. Designed with reproducibility and extensibility in mind, it serves as a template for future research studies employing similar eye-tracking methodologies. Researchers can adapt the scripts, folder structure, and workflows to their own studies, ensuring consistent data processing, analysis, and visualization.
+
+This pipeline processes Tobii eye-tracking data through multiple analytical stages: data cleanup and preprocessing, sequence pattern analysis, cluster identification, and predictive modeling. R scripts handle statistical analysis and visualization tasks, while Python enables machine learning workflows. All outputs follow a standardized schema and can be directly imported into Tableau for interactive dashboards, with automated validation ensuring data integrity throughout the pipeline.
 
 ## Highlights
 
