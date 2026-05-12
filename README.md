@@ -1,17 +1,27 @@
 # Tobii Eye Tracking Data Pipeline
 
-> **A Reusable Template for Eye-Tracking Research**  
-> This repository provides an end-to-end, modular pipeline for analyzing Tobii eye-tracking data. Designed with reproducibility and extensibility in mind, it serves as a template for future research studies employing similar eye-tracking methodologies. Researchers can adapt the scripts, folder structure, and workflows to their own studies, ensuring consistent data processing, analysis, and visualization.
+> **Eye Tracking to Examine Engagement with Data Visualization**  
+> This repository contains a production-ready pipeline for analyzing Tobii eye-tracking data, built to study how instructions and design choices affect user engagement with visual information. The pipeline supports reproducible research workflows and can be adapted to similar eye-tracking studies.
 
-This pipeline processes Tobii eye-tracking data through multiple analytical stages: data cleanup and preprocessing, sequence pattern analysis, cluster identification, and predictive modeling. R scripts handle statistical analysis and visualization tasks, while Python enables machine learning workflows. All outputs follow a standardized schema and can be directly imported into Tableau for interactive dashboards, with automated validation ensuring data integrity throughout the pipeline.
+## Overview
 
-## Highlights
+This project examines fundamental questions about data visualization design: *How do instructions affect user engagement with different chart types?* Using eye-tracking technology to measure cognitive attention and interaction patterns, we process raw gaze data through a series of analysis stages, from sequence pattern recognition through statistical visualization. The result is a reusable template for eye-tracking research that prioritizes data integrity, reproducibility, and stakeholder communication.
 
-- **Tableau-ready outputs:** Convert result CSVs into fast Tableau Extracts (`.hyper`) via a one-command builder. Includes `.tds` templates with pre-set field roles.
-- **Schema enforcement:** A machine-readable schema map and a validator script keep column names and data types consistent across outputs.
-- **CI guardrails:** GitHub Actions automatically validate CSV schemas on every push/PR for reliable, "just works" Tableau connections.
-- **Modular pipelines:** Separate folders for sequence analysis, clustering, ML, and visualizations, each with scripts, sample data, and example results.
-- **Cross-language tooling:** R for sequence/clustering/visualizations; Python for ML and data utilities.
+**Core workflow:**
+1. **Sequence Analysis** — Clean and preprocess raw eye-tracking data, then identify gaze patterns and attention sequences using the SPADE algorithm
+2. **Visualizations** — Generate publication-ready charts and engagement metrics
+3. **Tableau Integration** — Prepare outputs for interactive stakeholder dashboards
+
+*Additional exploratory work includes clustering and ML experiments for predictive modeling.*
+
+## Key Features
+
+- **Reproducible research workflows:** Sample data and reference outputs in every module ensure others can validate and build on results
+- **Schema enforcement:** Machine-readable schema and automated validation keep data consistent across analysis stages
+- **Publication-ready visualizations:** R-based pipeline generates charts and metrics optimized for academic/stakeholder communication
+- **Tableau integration:** Convert result CSVs into fast Tableau Extracts (`.hyper`) with pre-configured `.tds` templates for interactive dashboards
+- **Modular & extensible:** Separate folders for sequence analysis, clustering, visualizations, and ML experiments—use what you need, extend as your research evolves
+- **Cross-language tooling:** R for analysis and visualization; Python for ML pipelines and data utilities
 
 ## Tableau Integration
 
@@ -37,70 +47,71 @@ Schemas & CI:
 
 ## Repository Structure
 
-
 ```
 tobii-eye-tracking-pipeline/
-├── sequence-analysis/           # Sequence-based analysis (R)
-│   ├── scripts/
-│   ├── sample-data/
-│   └── results/
-├── cluster-analysis/            # Clustering gaze patterns (R)
-│   ├── scripts/
-│   ├── sample-data/
-│   └── results/
-├── visualizations/              # All visualization types (R)
-│   ├── box-plots/
+│
+├── CORE ANALYSIS
+│   ├── sequence-analysis/           # Sequence-based gaze analysis (R)
 │   │   ├── scripts/
 │   │   ├── sample-data/
 │   │   └── results/
-│   ├── heat-maps/
+│   └── visualizations/              # Publication-ready visualizations (R)
+│       ├── box-plots/
+│       ├── heat-maps/
+│       ├── coordinate-gaze-map/
+│       └── aoi-gaze-map/
+│           ├── scripts/
+│           ├── sample-data/
+│           └── results/
+│
+├── EXPLORATORY WORK
+│   ├── cluster-analysis/            # Clustering experiments (R)
 │   │   ├── scripts/
 │   │   ├── sample-data/
 │   │   └── results/
-│   ├── coordinate-gaze-map/
-│   │   ├── scripts/
-│   │   ├── sample-data/
-│   │   └── results/
-│   ├── aoi-gaze-map/
-│   │   ├── scripts/
-│   │   ├── sample-data/
-│   │   └── results/
-├── machine-learning/            # Predictive modeling (Python)
-│   ├── regression/
-│   │   ├── scripts/
-│   │   ├── sample-data/
-│   │   └── results/
-│   ├── classification/
-│   │   ├── scripts/
-│   │   ├── sample-data/
-│   │   └── results/
-└── README.md
+│   └── machine-learning/            # ML experiments (Python)
+│       ├── regression/
+│       ├── classification/
+│       ├── scripts/
+│       ├── sample-data/
+│       └── results/
+│
+└── UTILITIES
+    └── tableau-integration/         # Tableau Hyper export & validation
+        ├── scripts/
+        ├── schemas/
+        └── templates/
 ```
 
-
-Each analysis or visualization folder includes:
-
-* **scripts/**: Core code for that stage of analysis
-* **sample-data/**: Example inputs to demonstrate usage
-* **results/**: Representative outputs (plots, metrics, exports)
+**Each module includes:**
+- **scripts/**: Analysis code (R or Python)
+- **sample-data/**: Example input data demonstrating the expected format
+- **results/**: Representative outputs for validation and reference
 
 ## Tech Stack
 
-* **R**
+* **R** — Data cleanup, sequence analysis, cluster analysis, and publication-ready visualizations (ggplot2, TraMineR, etc.)
+* **Python** — Machine learning pipelines (scikit-learn, pandas, numpy)
+* **Tableau** — Interactive dashboards for stakeholder communication
+* **Tobii Pro Studio** — Raw eye-tracking data source
 
-  * Data cleanup and preprocessing
-  * Sequence analysis
-  * Cluster analysis
-  * Data visualization (ggplot2, etc.)
+## Quick Start: Core Analysis
 
-* **Python**
+Run the **sequence analysis** pipeline on sample data:
 
-  * Machine learning (scikit-learn, pandas, numpy, etc.)
-  * Model training and evaluation
+```bash
+cd sequence-analysis
+Rscript scripts/sequence_analysis.r --input sample\ data/sample_input_sequence_analysis.csv --output results/
+```
 
-* **Tobii Pro Studio / Tobii data exports**
+Then generate **visualizations**:
 
-  * Source format for raw eye-tracking data
+```bash
+cd ../visualizations/box-plots
+Rscript scripts/box_plots.r --input sample\ data/ --output results/
+```
+
+Outputs are ready for publication or import into Tableau. See individual module READMEs for detailed workflows.
 
 ## Getting Started
 
@@ -124,4 +135,10 @@ Each analysis or visualization folder includes:
 
 ## Research Context
 
-This repository was developed to support the study **"Improving Data Visualization Comprehension and Sensemaking: An empirical study"**, which is currently under review at an academic journal.
+**"Eye Tracking to Examine Engagement with Data Visualization"**
+
+Eye tracking technology has been adopted in numerous studies to help understand the underlying cognitive processes employed by users when viewing visual information. This project examines whether the types of instructions provided affect how users interact with data visualizations. 
+
+**Key findings:** Simple guidance by example could significantly improve the level of engagement with certain kinds of charts. This has implications for multiple domains including data visualization design and data literacy education curriculum design.
+
+This repository serves as a reusable template—other researchers can adapt the pipeline, folder structure, and validation workflows to their own eye-tracking studies.
