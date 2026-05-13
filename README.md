@@ -12,7 +12,6 @@ This project examines fundamental questions about data visualization design: *Ho
 2. **Visualizations** — Generate publication-ready charts and engagement metrics
 3. **Tableau Integration** — Prepare outputs for interactive stakeholder dashboards
 
-*Additional exploratory work includes clustering and ML experiments for predictive modeling.*
 
 ## Key Features
 
@@ -95,23 +94,37 @@ tobii-eye-tracking-pipeline/
 * **Tableau** — Interactive dashboards for stakeholder communication
 * **Tobii Pro Studio** — Raw eye-tracking data source
 
-## Quick Start: Core Analysis
+## Start Here (5-Minute Tour)
 
-Run the **sequence analysis** pipeline on sample data:
+If you only review one part of this repository, start with **sequence analysis** and **AOI visualization**.
 
-```bash
-cd sequence-analysis
-Rscript scripts/sequence_analysis.r --input sample\ data/sample_input_sequence_analysis.csv --output results/
-```
+1. Open `sequence-analysis/scripts/eye_tracking_data_processor.py` to see how raw participant files are cleaned and transformed into analysis-ready AOI sequences.
+2. Open `sequence-analysis/scripts/sequence_analysis.r` to see SPADE-based sequence mining and summary generation.
+3. Open `sequence-analysis/results/sample_results_sequence_analysis.csv` for a concrete example output.
+4. Open `visualizations/aoi-gaze-map/scripts/aoi_gaze_journey_map.r` and `visualizations/aoi-gaze-map/results/P14_Chart1_first10.png` to see gaze-journey visualization workflow and sample artifact.
 
-Then generate **visualizations**:
+This path gives a complete view from preprocessing -> sequence modeling -> visualization.
 
-```bash
-cd ../visualizations/box-plots
-Rscript scripts/box_plots.r --input sample\ data/ --output results/
-```
+## Core Inputs and Outputs
 
-Outputs are ready for publication or import into Tableau. See individual module READMEs for detailed workflows.
+| Module | Start Here | Primary Input(s) | Primary Output(s) |
+|---|---|---|---|
+| Sequence preprocessing | `sequence-analysis/scripts/eye_tracking_data_processor.py` | Participant Excel files (for example, `P2_Processed_Data.xlsx` ... `P49_Processed_Data.xlsx`) | `Combined_Data.xlsx`, `Abbreviated_Combined_Data.xlsx`, `AOI_Abbreviation_Legend.xlsx` |
+| Sequence analysis (SPADE) | `sequence-analysis/scripts/sequence_analysis.r` | `cleaned_sequences_final_chart{chart}_cond_{cond}.csv` | `sequences_counts_summary_info_chart{chart}_cond_{cond}.csv` and `hits_chart{chart}_cond_{cond}.txt` |
+| AOI gaze journey visualization | `visualizations/aoi-gaze-map/scripts/aoi_gaze_journey_map.r` | Participant AOI CSV (for example, `p14_TransformedAOIHits.csv`) plus chart image | PNG gaze-journey artifact (for example, `P14_Chart1_first10.png`) |
+
+## Running the Core Workflow
+
+1. Put your raw eye-tracking exports in a working directory.
+2. Run `sequence-analysis/scripts/eye_tracking_data_processor.py` and provide that directory when prompted.
+3. Ensure chart/condition cleaned CSV files are generated in the same working directory as `sequence-analysis/scripts/sequence_analysis.r` input naming conventions.
+4. Set `chartNum` and `condNum` in `sequence-analysis/scripts/sequence_analysis.r`, then run the script.
+5. For qualitative journey plots, run `visualizations/aoi-gaze-map/scripts/aoi_gaze_journey_map.r` and follow interactive prompts.
+
+Success check:
+- Sequence summary CSV appears with chart/condition naming.
+- SPADE intermediate hits file is generated.
+- AOI gaze journey PNG is generated.
 
 ## Getting Started
 
