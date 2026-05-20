@@ -14,7 +14,9 @@ This script performs two main functions:
 
 """
 
+import argparse
 import pandas as pd
+import numpy as np
 from pathlib import Path
 import string
 from typing import Dict, List
@@ -259,78 +261,127 @@ class EyeTrackingDataProcessor:
         print("=" * 60)
 
 
-def main():
+def remove_consecutive_duplicates(df: pd.DataFrame) -> pd.DataFrame:
     """
-    Main function to execute the eye tracking data processing.
-    """
-    # Configuration parameters - set these as needed
-    # Example: DATA_DIRECTORY = "./Final_Processed_Data" or input from user
-    DATA_DIRECTORY = input("Enter the path to your data directory: ").strip() or "."
-    PARTICIPANT_RANGE = (2, 50)  # Process participants P2 through P49
+    Remove consecutive duplicate AOI hits for each participant.
 
-    # Initialize and run processor
-    processor = EyeTrackingDataProcessor(
-        data_directory=DATA_DIRECTORY,
-        participant_range=PARTICIPANT_RANGE
+    Args:
+        df (pd.DataFrame): Data with ParticipantID and AOIHit columns
+
+    Returns:
+        pd.DataFrame: Cleaned data with consecutive AOI duplicates removed
+    """
+    data_copy = df.copy()
+    data_copy["lagged_AOIHit"] = data_copy.groupby("ParticipantID")["AOIHit"].shift(
+        1,
+        fill_value=np.nan,
+    )
+    cleaned = data_copy[data_copy["AOIHit"] != data_copy["lagged_AOIHit"]].drop(
+        columns=["lagged_AOIHit"]
+    )
+    return cleaned.reset_index(drop=True)
+
+
+def clean_sequences_for_chart_condition(chart_num: int, cond_num: int, data_directory: str) -> None:
+    """
+    Load, clean, and save eye tracking sequences for a given chart and condition.
+
+    Args:
+        chart_num (int): Chart number
+        cond_num (int): Condition number
+        data_directory (str): Directory containing input files
+    """
+    data_directory_path = Path(data_directory)
+    input_file = data_directory_path / f"participants_condition{cond_num}_chart{chart_num}.xlsx"
+    output_file = data_directory_path / f"cleaned_sequences_final_chart{chart_num}_cond_{cond_num}.csv"
+
+    if not input_file.exists():
+        print(f"Input file not found: {input_file}")
+        return
+
+    # Load and standardize input columns
+    data = pd.read_excel(input_file)
+    data.columns = ["ParticipantID", "ChartName", "AOIHit"]
+    data["ParticipantID"] = data["ParticipantID"].astype(str).str.replace("P", "").astype(int)
+
+    # Filter and order records before sequence cleanup
+    data_filtered = data[data["AOIHit"] != "D"].copy()
+    data_filtered = data_filtered.sort_values(["ParticipantID", "ChartName"])
+
+    cleaned_sequences = remove_consecutive_duplicates(data_filtered)
+
+    print("Cleaned sequences:")
+    print(cleaned_sequences.head())
+    cleaned_sequences.to_csv(output_file, index=False)
+    print(f"Cleaned sequences have been saved to {output_file}")
+
+
+def parse_args() -> argparse.Namespace:
+    """
+    Parse command-line arguments for selecting a processing workflow.
+    """
+    parser = argparse.ArgumentParser(description="Eye tracking data processing workflows")
+    parser.add_argument(
+        "--data-directory",
+        default=None,
+        help="Directory containing workflow input files (prompts if omitted)",
     )
 
-    # Execute the complete processing pipeline
-    processor.process_all_data()
+    subparsers = parser.add_subparsers(dest="command")
+
+    combine_parser = subparsers.add_parser(
+        "combine",
+        help="Combine participant files and create AOI abbreviations",
+    )
+    combine_parser.add_argument(
+        "--participant-start",
+        type=int,
+        default=2,
+        help="Starting participant number (inclusive)",
+    )
+    combine_parser.add_argument(
+        "--participant-end",
+        type=int,
+        default=50,
+        help="Ending participant number (exclusive)",
+    )
+
+    clean_parser = subparsers.add_parser(
+        "clean",
+        help="Clean chart/condition sequences and export CSV",
+    )
+    clean_parser.add_argument("--chart-num", type=int, required=True, help="Chart number")
+    clean_parser.add_argument("--cond-num", type=int, required=True, help="Condition number")
+    return parser.parse_args()
+
+
+def main() -> None:
+    """
+    Execute the selected eye tracking data processing workflow.
+    """
+    args = parse_args()
+
+    data_directory = args.data_directory
+    if data_directory is None:
+        data_directory = input("Enter the path to your data directory: ").strip() or "."
+
+    command = args.command or "combine"
+
+    if command == "combine":
+        participant_range = (args.participant_start, args.participant_end)
+        processor = EyeTrackingDataProcessor(
+            data_directory=data_directory,
+            participant_range=participant_range,
+        )
+        processor.process_all_data()
+        return
+
+    clean_sequences_for_chart_condition(
+        chart_num=args.chart_num,
+        cond_num=args.cond_num,
+        data_directory=data_directory,
+    )
 
 
 if __name__ == "__main__":
     main()
-
-    # -------------------------------------------------------------
-    # Modular function for chart/condition cleaning (R logic in Python)
-    import numpy as np
-
-    def clean_sequences_for_chart_condition(chart_num, cond_num, data_directory):
-        """
-        Loads, cleans, and saves eye tracking sequences for a given chart and condition.
-        Args:
-            chart_num (int): Chart number
-            cond_num (int): Condition number
-            data_directory (str or Path): Directory containing input files
-        """
-        import pandas as pd
-        from pathlib import Path
-        import os
-
-        data_directory = Path(data_directory)
-        input_file = data_directory / f"participants_condition{cond_num}_chart{chart_num}.xlsx"
-        output_file = data_directory / f"cleaned_sequences_final_chart{chart_num}_cond_{cond_num}.csv"
-
-        if not input_file.exists():
-            print(f"Input file not found: {input_file}")
-            return
-
-        # Load the data
-        data = pd.read_excel(input_file)
-        # Rename columns
-        data.columns = ["ParticipantID", "ChartName", "AOIHit"]
-        # Convert ParticipantID from 'P5' to 5
-        data["ParticipantID"] = data["ParticipantID"].astype(str).str.replace("P", "").astype(int)
-        # Filter out rows with AOIHit == 'D'
-        data_filtered = data[data["AOIHit"] != "D"].copy()
-        # Sort by ParticipantID and ChartName
-        data_filtered = data_filtered.sort_values(["ParticipantID", "ChartName"])
-
-        # Remove consecutive duplicates for each participant
-        def remove_consecutive_duplicates(df):
-            df = df.copy()
-            # For each participant, remove consecutive AOIHit duplicates
-            df["lagged_AOIHit"] = df.groupby("ParticipantID")["AOIHit"].shift(1, fill_value=np.nan)
-            cleaned = df[df["AOIHit"] != df["lagged_AOIHit"]].drop(columns=["lagged_AOIHit"])
-            return cleaned.reset_index(drop=True)
-
-        cleaned_sequences = remove_consecutive_duplicates(data_filtered)
-
-        print("Cleaned sequences:")
-        print(cleaned_sequences.head())
-        # Save to CSV
-        cleaned_sequences.to_csv(output_file, index=False)
-        print(f"Cleaned sequences have been saved to {output_file}")
-
-        # Example usage (uncomment to run for chart 4, condition 1)
-        # clean_sequences_for_chart_condition(chart_num=4, cond_num=1, data_directory="./Final_Processed_Data")
