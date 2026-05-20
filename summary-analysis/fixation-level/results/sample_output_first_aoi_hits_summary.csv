@@ -1,0 +1,43 @@
+"Participant","Chart1_First_AOI","Chart2_First_AOI","Chart3_First_AOI","Chart4_First_AOI","Chart1_First_AOI_GazeEventDuration","Chart2_First_AOI_GazeEventDuration","Chart3_First_AOI_GazeEventDuration","Chart4_First_AOI_GazeEventDuration"
+"p6","AOI[Main Data]Hit","AOI[Main chart]Hit","AOI[Asian Math Data]Hit","AOI[Main Chart]Hit.1",183,100,67,75
+"p7","AOI[Main Data]Hit","AOI[X axis]Hit_2","AOI[Asian Reading Data]Hit","AOI[Main Chart]Hit.1",242,150,217,175
+"p8","AOI[Main Data]Hit","AOI[Main chart]Hit","AOI[Black Reading Data]Hit","AOI[Main Chart]Hit.1",167,125,183,150
+"p9","AOI[Main Data]Hit","AOI[Main chart]Hit","AOI[Black Reading Data]Hit","AOI[Main Chart]Hit.1",167,125,217,75
+"p10","AOI[Main Data]Hit","AOI[Main chart]Hit","AOI[Asian Math Data]Hit","AOI[Key]Hit",133,158,100,100
+"p11","AOI[Main Data]Hit","AOI[Main chart]Hit","AOI[Black Reading Data]Hit","AOI[Title]Hit_4",125,217,175,100
+"p12","AOI[Main Data]Hit","AOI[Main chart]Hit","AOI[Black Reading Data]Hit","AOI[Main Chart]Hit.1",234,100,125,208
+"p13","AOI[Main Data]Hit","AOI[Main chart]Hit","AOI[Asian Reading Data]Hit","AOI[Main Chart]Hit.1",167,183,133,142
+"p14","AOI[Main Data]Hit","AOI[Main chart]Hit","AOI[Black Reading Data]Hit","AOI[Main Chart]Hit.1",117,267,192,317
+"p15","AOI[Rectangle 4]Hit","AOI[Main chart]Hit","AOI[Title]Hit_3","AOI[Main Chart]Hit.1",108,108,83,133
+"p16","AOI[Main Data]Hit","AOI[Main chart]Hit","AOI[Asian Reading Data]Hit","AOI[Main Chart]Hit.1",475,75,200,67
+"p17","AOI[X axis]Hit","AOI[Main chart]Hit","AOI[AI and AN Reading Data]Hit","AOI[Main Chart]Hit.1",150,83,75,117
+"p18","AOI[Rectangle 4]Hit","AOI[Main chart]Hit","AOI[Asian Reading Data]Hit","AOI[Main Chart]Hit.1",742,225,92,175
+"p19","AOI[Main Data]Hit","AOI[Main chart]Hit","AOI[Black Reading Data]Hit","AOI[Main Chart]Hit.1",192,242,133,83
+"p20","AOI[Rectangle 4]Hit","AOI[Main chart]Hit","AOI[Black Reading Data]Hit","AOI[Main Chart]Hit.1",183,175,117,83
+"p21","AOI[Rectangle 4]Hit","AOI[Main chart]Hit","AOI[Asian Reading Data]Hit","AOI[Main Chart]Hit.1",275,258,208,158
+"p22","AOI[Main Data]Hit","AOI[Main chart]Hit","AOI[Asian Reading Data]Hit","AOI[Main Chart]Hit.1",83,158,108,83
+"p23","AOI[Rectangle 4]Hit","AOI[Main chart]Hit","AOI[AI and AN Reading Data]Hit","AOI[Main Chart]Hit.1",350,83,92,167
+"p24","AOI[Title]Hit","AOI[Main chart]Hit","AOI[Black Reading Data]Hit","AOI[Key]Hit",158,83,100,158
+"p26","AOI[Main Data]Hit","AOI[Main chart]Hit","AOI[Asian Reading Data]Hit","AOI[Main Chart]Hit.1",158,192,125,133
+"p27","AOI[Main Data]Hit","AOI[Main chart]Hit","AOI[Asian Reading Data]Hit","AOI[Main Chart]Hit.1",167,92,83,92
+"p29","AOI[X axis]Hit","AOI[Main chart]Hit","AOI[Black Reading Data]Hit","AOI[Main Chart]Hit.1",142,133,83,175
+"p30","AOI[Main Data]Hit","AOI[Title]Hit_1","AOI[Black Reading Data]Hit","AOI[Main Chart]Hit.1",92,142,142,100
+"p31","AOI[Main Data]Hit","AOI[Main chart]Hit","AOI[Black Reading Data]Hit","AOI[Title]Hit_4",100,133,133,92
+"p32","AOI[Rectangle 4]Hit","AOI[Main chart]Hit","AOI[Title]Hit_3","AOI[Main Chart]Hit.1",167,125,83,100
+"p33","AOI[Main Data]Hit","AOI[Main chart]Hit","AOI[Black Reading Data]Hit","AOI[Key]Hit",142,83,208,208
+"p34","AOI[Rectangle 4]Hit","AOI[Main chart]Hit","AOI[Black Reading Data]Hit","AOI[Main Chart]Hit.1",67,208,83,83
+"p35","AOI[X axis]Hit","AOI[Main chart]Hit","AOI[Black Reading Data]Hit","AOI[Main Chart]Hit.1",150,142,167,108
+"p36","AOI[Main Data]Hit","AOI[Main chart]Hit","AOI[AI and AN Reading Data]Hit","AOI[Main Chart]Hit.1",83,108,125,75
+"p37","AOI[Main Data]Hit","AOI[Main chart]Hit","AOI[Black Reading Data]Hit","AOI[Title]Hit_4",117,67,108,167
+"p38","AOI[Rectangle 4]Hit","AOI[X axis]Hit_2","AOI[Black Reading Data]Hit","AOI[Y axis]Hit_5",158,92,67,167
+"p39","AOI[Rectangle 4]Hit","AOI[Main chart]Hit","AOI[Title]Hit_3","AOI[Main Chart]Hit.1",67,167,83,150
+"P40","AOI[Main Data]Hit","AOI[Main chart]Hit","AOI[AI and AN Reading Data]Hit","AOI[Main Chart]Hit.1",92,242,75,158
+"p41","AOI[Main Data]Hit","AOI[Main chart]Hit","AOI[Title]Hit_3","AOI[Title]Hit_4",108,92,75,92
+"p42","AOI[Rectangle 4]Hit","AOI[Main chart]Hit","AOI[Asian Math Data]Hit","AOI[Main Chart]Hit.1",117,75,375,67
+"p43","AOI[Main Data]Hit","AOI[Main chart]Hit","AOI[Asian Reading Data]Hit","AOI[Key]Hit",67,75,108,117
+"p44","AOI[Rectangle 4]Hit","AOI[Main chart]Hit","AOI[Asian Reading Data]Hit","AOI[Main Chart]Hit.1",475,108,117,83
+"p45","AOI[Main Data]Hit","AOI[Main chart]Hit","AOI[Title]Hit_3","AOI[Main Chart]Hit.1",142,142,83,142
+"p46","AOI[Main Data]Hit","AOI[Main chart]Hit","AOI[Black Math Data]Hit","AOI[Main Chart]Hit.1",100,200,133,225
+"p47","AOI[Main Data]Hit","AOI[Main chart]Hit","AOI[Hispanic Math Data]Hit","AOI[Main Chart]Hit.1",67,92,142,258
+"p48","AOI[X axis]Hit","AOI[Main chart]Hit","AOI[Black Reading Data]Hit","AOI[Main Chart]Hit.1",167,108,208,67
+"p49","AOI[Title]Hit","AOI[Main chart]Hit","AOI[Title]Hit_3","AOI[Main Chart]Hit.1",67,100,117,192

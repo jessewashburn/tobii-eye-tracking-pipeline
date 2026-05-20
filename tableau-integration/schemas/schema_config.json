@@ -16,6 +16,27 @@
       "duration": "double"
     }
   },
+  "summary-analysis/chart-level/results": {
+    "*.csv": {
+      "Participant": "text",
+      "Chart": "text"
+    }
+  },
+  "summary-analysis/fixation-level/results": {
+    "sample_output_fixations_summary_counts_durations.csv": {
+      "Participant": "text"
+    },
+    "sample_output_fixations_task_time_summary.csv": {
+      "Participant": "text",
+      "Chart1_Task_Time": "double",
+      "Chart2_Task_Time": "double",
+      "Chart3_Task_Time": "double",
+      "Chart4_Task_Time": "double"
+    },
+    "sample_output_first_aoi_hits_summary.csv": {
+      "Participant": "text"
+    }
+  },
   "visualizations/aoi-gaze-map/results": {
     "*": {
       "participant_id": "int",

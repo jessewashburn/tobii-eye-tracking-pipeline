@@ -17,6 +17,8 @@ except Exception as e:
 RESULT_FOLDERS = [
     Path("cluster-analysis/results"),
     Path("sequence-analysis/results"),
+    Path("summary-analysis/chart-level/results"),
+    Path("summary-analysis/fixation-level/results"),
     Path("visualizations/aoi-gaze-map/results"),
 ]
 

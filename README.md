@@ -54,6 +54,14 @@ tobii-eye-tracking-pipeline/
 │   │   ├── scripts/
 │   │   ├── sample-data/
 │   │   └── results/
+│   ├── summary-analysis/            # Fixation and chart-level summaries (R)
+│   │   ├── chart-level/
+│   │   │   ├── scripts/
+│   │   │   └── results/
+│   │   ├── fixation-level/
+│   │   │   ├── scripts/
+│   │   │   └── results/
+│   │   └── sample data/
 │   └── visualizations/              # Publication-ready visualizations (R)
 │       ├── box-plots/
 │       ├── heat-maps/
@@ -96,14 +104,15 @@ tobii-eye-tracking-pipeline/
 
 ## Start Here (5-Minute Tour)
 
-If you only review one part of this repository, start with **sequence analysis** and **AOI visualization**.
+If you only review one part of this repository, start with **sequence analysis**, **summary analysis**, and **AOI visualization**.
 
 1. Open `sequence-analysis/scripts/eye_tracking_data_processor.py` to see how raw participant files are cleaned and transformed into analysis-ready AOI sequences.
 2. Open `sequence-analysis/scripts/sequence_analysis.r` to see SPADE-based sequence mining and summary generation.
 3. Open `sequence-analysis/results/sample_results_sequence_analysis.csv` for a concrete example output.
-4. Open `visualizations/aoi-gaze-map/scripts/aoi_gaze_journey_map.r` and `visualizations/aoi-gaze-map/results/P14_Chart1_first10.png` to see gaze-journey visualization workflow and sample artifact.
+4. Open `summary-analysis/README.md`, then review `summary-analysis/fixation-level/scripts/fixations_counts_durations.R` and `summary-analysis/fixation-level/results/sample_output_fixations_summary_counts_durations.csv`.
+5. Open `visualizations/aoi-gaze-map/scripts/aoi_gaze_journey_map.r` and `visualizations/aoi-gaze-map/results/P14_Chart1_first10.png` to see gaze-journey visualization workflow and sample artifact.
 
-This path gives a complete view from preprocessing -> sequence modeling -> visualization.
+This path gives a complete view from preprocessing -> sequence modeling -> summary metrics -> visualization.
 
 ## Core Inputs and Outputs
 
@@ -111,6 +120,7 @@ This path gives a complete view from preprocessing -> sequence modeling -> visua
 |---|---|---|---|
 | Sequence preprocessing | `sequence-analysis/scripts/eye_tracking_data_processor.py` | Participant Excel files (for example, `P2_Processed_Data.xlsx` ... `P49_Processed_Data.xlsx`) | `Combined_Data.xlsx`, `Abbreviated_Combined_Data.xlsx`, `AOI_Abbreviation_Legend.xlsx` |
 | Sequence analysis (SPADE) | `sequence-analysis/scripts/sequence_analysis.r` | `cleaned_sequences_final_chart{chart}_cond_{cond}.csv` | `sequences_counts_summary_info_chart{chart}_cond_{cond}.csv` and `hits_chart{chart}_cond_{cond}.txt` |
+| Summary analysis | `summary-analysis/README.md` | Refined fixation exports (for example, `p6_fixations_refined_clean.xlsx`) | `summary-analysis/fixation-level/results/sample_output_fixations_summary_counts_durations.csv`, `summary-analysis/fixation-level/results/sample_output_fixations_task_time_summary.csv`, `summary-analysis/fixation-level/results/sample_output_first_aoi_hits_summary.csv` |
 | AOI gaze journey visualization | `visualizations/aoi-gaze-map/scripts/aoi_gaze_journey_map.r` | Participant AOI CSV (for example, `p14_TransformedAOIHits.csv`) plus chart image | PNG gaze-journey artifact (for example, `P14_Chart1_first10.png`) |
 
 ## Running the Core Workflow
